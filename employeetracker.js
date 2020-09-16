@@ -21,7 +21,9 @@ const connection = mysql.createConnection({
 //connects to MySQL server and database
 connection.connect(function (err) {
   if (err) throw err;
-  userPrompt(); //function here
+  console.log("connected as id " + connection.threadId);
+  //function to start the questions
+  userPrompt(); 
 });
 
 //Prompts initial employee questions
@@ -75,21 +77,17 @@ function userPrompt() {
 function addEmployee() {
   inquirer.prompt({
     type: "input",
-    name: "firstName",
-    message: "Please input the employee's first name."
-  }, {
-    type: "input",
-    name: "lastName",
-    message: "Please input the employee's last name."
-  }).then(employeeAnswer =>{
-    connection.query("INSERT INTO employee SET ?", {
-      firstName: employeeAnswer.firstName,
-      lastName: employeeAnswer.lastName}, function (error, result) {
-      if (error) {
-        throw error;
+    name: "name",
+    message: "Please input the employee's name."
+    }).then(employeeAnswer =>{
+    connection.query("INSERT INTO employee SET ?", 
+    {
+      employee_name: employeeAnswer.name,
+    }, function (err) {
+      if (err) {
+        throw err;
       } else {
         console.log("New Employee Added");
-        console.table(employeeAnswer);
         promptUser();
       }
     });
@@ -109,14 +107,14 @@ function addDepartment() {
       "Legal",
     ]
   }).then(answer => {
-    connection.query("INSERT INTO department SET ?", {
-      department: answer.addDepartment
-    }, function (error, result) {
-      if (error) {
-        throw error;
+    connection.query("INSERT INTO department SET ?", 
+    {
+      name: answer.addDepartment
+    }, function (err) {
+      if (err) {
+        throw err;
       } else {
         console.log("New Department Added");
-        console.table(answer);
         promptUser();
       }
     });
@@ -146,16 +144,16 @@ function addRole() {
     name: "departmentID",
     message: "Please input the department ID for this role."
   }).then(roleAnswer => {
-    connection.query("INSERT INTO role SET ?", {
-      role: roleAnswer.roleChoices,
+    connection.query("INSERT INTO role SET ?", 
+    {
+      title: roleAnswer.roleChoices,
       salary: roleAnswer.salary,
-      departmentID: roleAnswer.departmentID
-    }, function (error, result) {
-      if (error) {
-        throw error;
+      department_id: roleAnswer.departmentID
+    }, function (err) {
+      if (err) {
+        throw err;
       } else {
         console.log("New Role Added")
-        console.table(roleAnswer);
         promptUser();
       }
     });
@@ -163,12 +161,47 @@ function addRole() {
 }
 
 //function to view all employees
-
+function viewEmployees(){
+  connection.query("SELECT employee_name FROM employee", function (err, result){
+    if (err) {
+      throw err
+    } else {
+      console.log(result);
+      console.table(result);
+      promptUser();
+    }
+  });
+}
 
 //function to view all by department
+function viewByDepartment(){
+  connection.query("SELECT name FROM department", function(err, result){
+    if (err) {
+      throw err 
+      } else {
+        console.log(result);
+        console.table(result);
+        promptUser();
+      }
+  });
+}
 
 
 //function to view employee role
+function viewRole(){
+  connection.query("SELECT title FROM role", function (err, result){
+    if(err){
+      throw err
+    } else {
+      console.log(result);
+      console.table(result);
+      promptUser();
+    }
+  });
+}
 
 
 //function to delete employee
+function employeeDelete(){
+
+}
