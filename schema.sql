@@ -15,7 +15,7 @@ CREATE TABLE role (
   salary DECIMAL,
   department_id INT,
   PRIMARY KEY (id)
-  FOREIGN KEY (department_id) REFERENCES department_id ON DELETE CASCADE
+   FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE
 );
 
 CREATE TABLE employee (
@@ -24,8 +24,7 @@ CREATE TABLE employee (
    role_id INT,
    manager_id INT
    PRIMARY KEY (id)
-   FOREIGN KEY (role_id) REFERENCES role_id ON DELETE CASCADE, 
-   FOREIGN KEY (manager_id) REFERENCES manager_id ON DELETE CASCADE
+  FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 );
 
 SELECT * FROM department;
