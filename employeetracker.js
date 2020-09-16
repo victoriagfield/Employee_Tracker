@@ -34,9 +34,9 @@ function userPrompt() {
     message: "What would you like to do?",
     choices: [
       "View All Employees",
-      "View All Employees by Department",
+      "View All Departments",
       "Add Employee",
-      "Add Employee Role",
+      "Add All Roles",
       "Update Employee Role",
       "View Employee Roll",
       "Add Employee Department",
@@ -48,7 +48,7 @@ function userPrompt() {
       case "View All Employees":
         viewEmployees(userInput);
         break;
-      case "View All Employees by Department":
+      case "View All Departments":
         viewByDepartment(userInput);
         break;
       case "Add Employee":
@@ -57,14 +57,14 @@ function userPrompt() {
       case "Add Employee Role":
         addRole(userInput);
         break;
-      case "View Employee Role":
+      case "View All Roles":
         viewRole(userInput);
         break;
       case "Add Employee Department":
         addDepartment(userInput);
         break;
-      case "Remove Employee":
-        employeeDelete(userInput);
+      case "Update Employee":
+        employeeUpdate(userInput);
         break;
       case "Exit":
         connection.end(userInput);
@@ -163,6 +163,7 @@ function addRole() {
 //function to view all employees
 function viewEmployees(){
   connection.query("SELECT employee_name FROM employee", function (err, result){
+    for( let i = 0; i < result.length; i++);
     if (err) {
       throw err
     } else {
@@ -173,9 +174,10 @@ function viewEmployees(){
   });
 }
 
-//function to view all by department
+//function to all departments
 function viewByDepartment(){
   connection.query("SELECT name FROM department", function(err, result){
+    for( let i = 0; i < result.length; i++);
     if (err) {
       throw err 
       } else {
@@ -187,9 +189,10 @@ function viewByDepartment(){
 }
 
 
-//function to view employee role
+//function to view all roles
 function viewRole(){
   connection.query("SELECT title FROM role", function (err, result){
+    for( let i = 0; i < result.length; i++);
     if(err){
       throw err
     } else {
@@ -201,7 +204,7 @@ function viewRole(){
 }
 
 
-//function to delete employee
-function employeeDelete(){
+//function to update employee
+function employeeUpdate(){
 
 }
