@@ -88,7 +88,7 @@ function addEmployee() {
         throw err;
       } else {
         console.log("New Employee Added");
-        promptUser();
+        userPrompt();
       }
     });
   });
@@ -115,7 +115,7 @@ function addDepartment() {
         throw err;
       } else {
         console.log("New Department Added");
-        promptUser();
+        userPrompt();
       }
     });
   });
@@ -154,7 +154,7 @@ function addRole() {
         throw err;
       } else {
         console.log("New Role Added")
-        promptUser();
+        userPrompt();
       }
     });
   });
@@ -169,7 +169,7 @@ function viewEmployees(){
     } else {
       console.log(result);
       console.table(result);
-      promptUser();
+      userPrompt();
     }
   });
 }
@@ -183,7 +183,7 @@ function viewByDepartment(){
       } else {
         console.log(result);
         console.table(result);
-        promptUser();
+        userPrompt();
       }
   });
 }
@@ -198,7 +198,7 @@ function viewRole(){
     } else {
       console.log(result);
       console.table(result);
-      promptUser();
+      userPrompt();
     }
   });
 }
