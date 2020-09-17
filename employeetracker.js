@@ -105,9 +105,9 @@ function addRole() {
     name: "salary",
     message: "What is the salary for this role?"
   }, {
-    type: "input",
+    type: "list",
     name: "departmentID",
-    message: "Please input the department ID for this role.",
+    message: "Please pick the department ID for this role.",
     choices: [
       "1 - Sales",
       "2 - Engineering",
