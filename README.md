@@ -37,8 +37,10 @@
    <hr>
    
    ## Images:
-![employeehw1](https://user-images.githubusercontent.com/66035385/91758221-a2af1f00-eb9d-11ea-90d5-864593411d7f.jpg)
-![employeehw2](https://user-images.githubusercontent.com/66035385/91758224-a347b580-eb9d-11ea-9028-d2fe79ec8b7d.jpg) 
+![schema](https://user-images.githubusercontent.com/66035385/93536113-56423e00-f916-11ea-983a-24126f1ea1c5.jpg)
+![seed1](https://user-images.githubusercontent.com/66035385/93536115-56423e00-f916-11ea-8cdf-673ccd4371bf.jpg)
+![seed2](https://user-images.githubusercontent.com/66035385/93536117-56423e00-f916-11ea-9104-c29b14fa5179.jpg)
+![seed3](https://user-images.githubusercontent.com/66035385/93536119-56dad480-f916-11ea-9e56-f84508175e76.jpg)
 
 
 
@@ -51,10 +53,9 @@
    <hr>
 
    ## Test: 
-   This application is tested in the VSC terminal using node and creates an HTML page with the output
+   This application is tested in the VSC terminal using node
   
-   ![image](https://user-images.githubusercontent.com/66035385/91774686-64bef480-ebb7-11ea-81ec-14e36b6d6eb1.png)
-  ![employeeSummary](https://user-images.githubusercontent.com/66035385/91759667-09cdd300-eba0-11ea-89e2-5fd912d2e342.gif)
+ ![employeeTracker](https://user-images.githubusercontent.com/66035385/93536111-55a9a780-f916-11ea-904c-3ce693181699.gif)
 
 
 
