@@ -105,15 +105,15 @@ function addRole() {
     name: "salary",
     message: "What is the salary for this role?"
   }, {
-    type: "list",
+    type: "input",
     name: "departmentID",
-    message: "Please pick the department ID for this role.",
-    choices: [
-      "1 - Sales",
-      "2 - Engineering",
-      "3 - Finance",
-      "4 - Legal",
-    ]
+    message: "Please input the department ID for this role.",
+    // choices: [
+    //   "1 - Sales",
+    //   "2 - Engineering",
+    //   "3 - Finance",
+    //   "4 - Legal"
+    // ]
 }]).then(roleAnswer => {
     connection.query("INSERT INTO role SET ?", {
       title: roleAnswer.roleChoices,
