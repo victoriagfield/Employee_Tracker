@@ -43,11 +43,11 @@ function mainMenu() {
 
 //function to add new employee
 function addEmployee() {
-  inquirer.prompt({
+  return inquirer.prompt([{
     type: "input",
     name: "name",
     message: "Please input the employee's name."
-  }).then(employeeAnswer => {
+  }]).then(employeeAnswer => {
     connection.query("INSERT INTO employee SET ?", {
       employee_name: employeeAnswer.name,
     }, function (err) {
@@ -63,7 +63,7 @@ function addEmployee() {
 
 //function to add new department
 function addDepartment() {
-  inquirer.prompt({
+  return inquirer.prompt([{
     type: "input",
     name: "addDepartment",
     message: "What department does the employee work in?",
@@ -73,7 +73,7 @@ function addDepartment() {
       "Finance",
       "Legal",
     ]
-  }).then(answer => {
+  }]).then(answer => {
     connection.query("INSERT INTO department SET ?", {
       name: answer.addDepartment
     }, function (err) {
@@ -89,7 +89,7 @@ function addDepartment() {
 
 //function to add new role
 function addRole() {
-  inquirer.prompt({
+  return inquirer.prompt([{
     type: "list",
     name: "roleChoices",
     message: "What is the employee's title?",
@@ -99,8 +99,7 @@ function addRole() {
       "Software Engineer",
       "Account Manager",
       "Accountant",
-      "Legal Team Lead"
-    ]
+      "Legal Team Lead"]
   }, {
     type: "input",
     name: "salary",
@@ -108,8 +107,14 @@ function addRole() {
   }, {
     type: "input",
     name: "departmentID",
-    message: "Please input the department ID for this role."
-  }).then(roleAnswer => {
+    message: "Please input the department ID for this role.",
+    choices: [
+      "1 - Sales",
+      "2 - Engineering",
+      "3 - Finance",
+      "4 - Legal",
+    ]
+}]).then(roleAnswer => {
     connection.query("INSERT INTO role SET ?", {
       title: roleAnswer.roleChoices,
       salary: roleAnswer.salary,
@@ -170,31 +175,27 @@ function viewRole() {
 
 //Prompts initial employee questions
 function userPrompt() {
-  inquirer.prompt({
+  return inquirer.prompt([{
     type: "list",
     name: "firstQuestion",
     message: "What would you like to do?",
     choices: [
+      "Add Employee",
       "View All Employees",
       "View All Departments",
-      "Add Employee",
       "View All Roles",
-      "Update Employee",
-      "View Employee Roll",
-      "Add Employee Department",
-      "Remove Employee",
       "Exit"
     ]
-  }).then(userInput => {
+  }]).then(userInput => {
     switch (userInput.firstQuestion) {
+      case "Add Employee":
+        addEmployee(userInput);
+        break;
       case "View All Employees":
         viewEmployees(userInput);
         break;
       case "View All Departments":
         viewByDepartment(userInput);
-        break;
-      case "Add Employee":
-        addEmployee(userInput);
         break;
       case "Add Employee Role":
         addRole(userInput);
@@ -204,9 +205,6 @@ function userPrompt() {
         break;
       case "Add Employee Department":
         addDepartment(userInput);
-        break;
-      case "Update Employee":
-        employeeUpdate(userInput);
         break;
       case "Exit":
         connection.end(userInput);
